@@ -1,1 +1,1 @@
-# clarusway-workshops
+# my-clarusway-workshop
