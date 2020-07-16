@@ -53,11 +53,11 @@ Resources:
           yum install python3 -y
           pip3 install flask
           cd /home/ec2-user/
-          wget ...................................
+          wget https://raw.githubusercontent.com/Rehab19/my-clarusway-workshop/master/001-roman-numerals-converter/roman-python.py
           mkdir templates
           cd templates
-          wget ...........................
-          wget ...................
+          wget https://raw.githubusercontent.com/Rehab19/my-clarusway-workshop/master/001-roman-numerals-converter/templates/index.html
+          wget https://raw.githubusercontent.com/Rehab19/my-clarusway-workshop/master/001-roman-numerals-converter/templates/result.html
           cd ..
           python3 app.py
       
