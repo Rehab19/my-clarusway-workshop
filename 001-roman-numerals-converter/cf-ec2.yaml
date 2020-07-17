@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   AWS CloudFormation that runs a roman numeral converter by getting the codes from github.
   The template creates own security group allowing SSH and HTTP connection from everywhere. 
-  The template is set to run in Oregon and North Virginia regions only. You may need to modify
+  The template is set to run in North Virginia region. You may need to modify
   to make the template executible in other regions. You will be billed for the AWS resources
   used if you create a stack from this template.
 Parameters:
@@ -64,7 +64,7 @@ Resources:
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      GroupDescription: Enable SSH access via port 22
+      GroupDescription: Enable SSH access via port 22 and http port 80
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '22'
