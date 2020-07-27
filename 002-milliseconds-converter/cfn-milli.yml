@@ -25,7 +25,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
-          SourceSecurityGroupId: !Ref ALBSecurityGroup
+          SourceSecurityGroupId: !GetAtt ALBSecurityGroup.GroupId
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
@@ -38,12 +38,14 @@ Resources:
         InstanceType: t2.micro
         KeyName: !Ref KeyName
         SecurityGroupIds: 
-          - !Ref WebServersSecurityGroup   
-        Tags:
-            - Key: Name
-              Value: !Sub Web Server of ${AWS::StackName} Stack
+          - !GetAtt WebServersSecurityGroup.GroupId
+        TagSpecifications: 
+          - ResourceType: instance
+            Tags:
+              - Key: Name
+                Value: !Sub Web Server of ${AWS::StackName} Stack
         UserData: 
-          Fn::Base64: !Sub |
+          Fn::Base64: |
             #! /bin/bash
             yum update -y
             yum install python3 -y
@@ -59,7 +61,7 @@ Resources:
       Port: 80
       Protocol: HTTP
       TargetType: instance
-      VpcId: !Ref WebServersSecurityGroup
+      VpcId: !GetAtt WebServersSecurityGroup.VpcId
   ApplicationLoadBalancer:
     Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
     Properties:
