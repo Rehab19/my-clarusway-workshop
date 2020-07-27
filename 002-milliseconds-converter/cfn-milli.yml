@@ -32,7 +32,6 @@ Resources:
       LaunchTemplateData:
         ImageId: ami-08f3d892de259504d
         InstanceType: t2.micro
-        KeyName: Rehab.training
         SecurityGroupIds: 
           - !GetAtt WebServersSecurityGroup.GroupId
         TagSpecifications: 
