@@ -1,7 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
   Cloudformation template for milliseconds converter application
-  This app runs on application load balancer 
+  This app runs on application load balancer
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.  
 Resources:
   ALBSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
@@ -29,9 +34,9 @@ Resources:
     Type: "AWS::EC2::LaunchTemplate"
     Properties:
       LaunchTemplateData:
-        ImageId: ami-0080e4c5bc078760e
+        ImageId: ami-08f3d892de259504d
         InstanceType: t2.micro
-        KeyName: key1
+        KeyName: !Ref KeyName
         SecurityGroupIds: 
           - !GetAtt WebServersSecurityGroup.GroupId
         TagSpecifications: 
