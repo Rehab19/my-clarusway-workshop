@@ -66,12 +66,12 @@ Resources:
       SecurityGroups:
         - !GetAtt ALBSecurityGroup.GroupId
       Subnets:
-        - subnet-c41ba589
-        - subnet-077c9758
-        - subnet-3ccd235a
-        - subnet-ed49bccc
-        - subnet-8d8dbfb3
-        - subnet-3246e63c
+        - subnet-31e55c7c
+        - subnet-3626d217
+        - subnet-7fd57671
+        - subnet-d1bb518e
+        - subnet-e3370add
+        - subnet-fd09e79b
       Type: application
   ALBListener:
     Type: "AWS::ElasticLoadBalancingV2::Listener"
