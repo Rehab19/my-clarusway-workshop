@@ -102,8 +102,8 @@ Resources:
       LaunchTemplate:
         LaunchTemplateId: !Ref WebServerLT
         Version: !GetAtt WebServerLT.LatestVersionNumber
-      MaxSize: 3 #required
-      MinSize: 1 #required
+      MaxSize: 3    # required
+      MinSize: 1    # required
       TargetGroupARNs:
         - !Ref WebServersTG
 Outputs:
