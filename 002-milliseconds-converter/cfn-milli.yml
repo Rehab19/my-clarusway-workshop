@@ -50,11 +50,14 @@ Resources:
             yum update -y
             yum install python3 -y
             pip3 install flask
-            FOLDER="https://github.com/Rehab19/my-clarusway-workshop/tree/master/002-milliseconds-converter"
-            curl -s --create-dirs -o "/home/ec2-user/templates/index.html" -L "$FOLDER"templates/index.html
-            curl -s --create-dirs -o "/home/ec2-user/templates/result.html" -L "$FOLDER"templates/result.html
-            curl -s --create-dirs -o "/home/ec2-user/app.py" -L "$FOLDER"app.py
-            python3 /home/ec2-user/app.py
+            cd /home/ec2-user/
+            wget https://raw.githubusercontent.com/Rehab19/my-clarusway-workshop/master/002-milliseconds-converter/app.py
+            mkdir templates
+            cd templates
+            wget https://raw.githubusercontent.com/Rehab19/my-clarusway-workshop/master/002-milliseconds-converter/templates/index.html
+            wget https://raw.githubusercontent.com/Rehab19/my-clarusway-workshop/master/002-milliseconds-converter/templates/result.html
+            cd ..
+            python3 app.py
             
 
   WebServersTG:
