@@ -11,7 +11,7 @@ Resources:
   ALBSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
-      GroupDescription: Enable HTTP for ALB #required
+      GroupDescription: Enable HTTP for ALB 
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
@@ -20,7 +20,7 @@ Resources:
   WebServersSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
-      GroupDescription: Enable HTTP for App only from ALB #required
+      GroupDescription: Enable HTTP for App only from ALB 
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
@@ -85,12 +85,12 @@ Resources:
   ALBListener:
     Type: "AWS::ElasticLoadBalancingV2::Listener"
     Properties:
-      DefaultActions: #required
+      DefaultActions: 
         - TargetGroupArn: !Ref WebServersTG
           Type: forward
-      LoadBalancerArn: !Ref ApplicationLoadBalancer #required
-      Port: 80 #required
-      Protocol: HTTP #required
+      LoadBalancerArn: !Ref ApplicationLoadBalancer 
+      Port: 80 
+      Protocol: HTTP 
   WebServerASG:
     Type: "AWS::AutoScaling::AutoScalingGroup"
     Properties:
@@ -102,8 +102,8 @@ Resources:
       LaunchTemplate:
         LaunchTemplateId: !Ref WebServerLT
         Version: !GetAtt WebServerLT.LatestVersionNumber
-      MaxSize: 3    # required
-      MinSize: 1    # required
+      MaxSize: 3    
+      MinSize: 1   
       TargetGroupARNs:
         - !Ref WebServersTG
 Outputs:
