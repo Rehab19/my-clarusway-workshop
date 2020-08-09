@@ -67,7 +67,7 @@ Resources:
       DeletionProtection: false
       Engine: MySQL
       EngineVersion: 8.0.19
-      MasterUserPassword: rehab_1
+      MasterUserPassword: callahan_1
       MasterUsername: admin
       MonitoringInterval: 0
       MultiAZ: false
