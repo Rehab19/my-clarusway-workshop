@@ -21,28 +21,6 @@ connection = mysql.connect()
 connection.autocommit(True)
 cursor = connection.cursor()
 
-def init_phonebook_db():
-    drop_table = 'DROP TABLE IF EXISTS phonebook.phonebook;'
-    phonebook_table = """
-    CREATE TABLE phonebook(
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    number VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-    """
-    data = """
-    INSERT INTO phonebook.phonebook (name, number)
-    VALUES
-        ("Callahan", "1234567890"),
-        ("Sergio Taco", "67854"),
-        ("Vincenzo Altobelli", "876543554");
-    """
-
-    cursor.execute(drop_table)
-    cursor.execute(phonebook_table)
-    cursor.execute(data)
-
 def find_persons(keyword):
     query=f"""
     SELECT * FROM phonebook WHERE name like '%{keyword.strip().lower()}%';
@@ -119,56 +97,55 @@ def find_records():
         persons = find_persons(keyword)
         return render_template('index.html', persons=persons, keyword=keyword, show_result=True, developer_name='Rehab')
     else:
-        return render_template('index.html', show_result=False, developer_name='Rehab')
+        return render_template('index.html', show_result=False, developer_name='Callahan')
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_record():
     if request.method == 'POST':
         name=request.form['username']
         if name is None or name.strip() == '':
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be empty.', show_result=False, action_name='save', developer_name='Rehab')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be empty.', show_result=False, action_name='save', developer_name='Callahan')
         elif name.isdecimal():
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be number.', show_result=False, action_name='save', developer_name='Rehab')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be number.', show_result=False, action_name='save', developer_name='Callahan')
 
         phone_number=request.form['phonenumber']
         if phone_number is None or phone_number.strip() == '':
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number can not be empty.', show_result=False, action_name='save', developer_name='Rehab')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number can not be empty.', show_result=False, action_name='save', developer_name='Callahan')
         elif not phone_number.isdecimal():
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number should be in numeric format.', show_result=False, action_name='save', developer_name='Rehab')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number should be in numeric format.', show_result=False, action_name='save', developer_name='Callahan')
 
         result = insert_person(name, phone_number)
-        return render_template('add-update.html', show_result=True, result=result, not_valid=False, action_name='save', developer_name='Rehab')
+        return render_template('add-update.html', show_result=True, result=result, not_valid=False, action_name='save', developer_name='Callahan')
     else:
-        return render_template('add-update.html', show_result=False, not_valid=False, action_name='save', developer_name='Rehab')
+        return render_template('add-update.html', show_result=False, not_valid=False, action_name='save', developer_name='Callahan')
 
 @app.route('/update', methods=['GET', 'POST'])
 def update_record():
     if request.method == 'POST':
         name = request.form['username']
         if name is None or name.strip() == "":
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be empty', show_result=False, action_name='update', developer_name='Rehab')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be empty', show_result=False, action_name='update', developer_name='Callahan')
         phone_number = request.form['phonenumber']
         if phone_number is None or phone_number.strip() == "":
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number can not be empty', show_result=False, action_name='update', developer_name='Rehab')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number can not be empty', show_result=False, action_name='update', developer_name='Callahan')
         elif not phone_number.isdecimal():
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number should be in numeric format', show_result=False, action_name='update', developer_name='Rehab')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number should be in numeric format', show_result=False, action_name='update', developer_name='Callahan')
 
         result = update_person(name, phone_number)
-        return render_template('add-update.html', show_result=True, result=result, not_valid=False, action_name='update', developer_name='Rehab')
+        return render_template('add-update.html', show_result=True, result=result, not_valid=False, action_name='update', developer_name='Callahan')
     else:
-        return render_template('add-update.html', show_result=False, not_valid=False, action_name='update', developer_name='Rehab')
+        return render_template('add-update.html', show_result=False, not_valid=False, action_name='update', developer_name='Callahan')
 
 @app.route('/delete', methods=['GET', 'POST'])
 def delete_record():
     if request.method == 'POST':
         name = request.form['username']
         if name is None or name.strip() == "":
-            return render_template('delete.html', not_valid=True, message='Invalid input: Name can not be empty', show_result=False, developer_name='Rehab')
+            return render_template('delete.html', not_valid=True, message='Invalid input: Name can not be empty', show_result=False, developer_name='Callahan')
         result = delete_person(name)
-        return render_template('delete.html', show_result=True, result=result, not_valid=False, developer_name='Rehab')
+        return render_template('delete.html', show_result=True, result=result, not_valid=False, developer_name='Callahan')
     else:
-        return render_template('delete.html', show_result=False, not_valid=False, developer_name='Rehab')
+        return render_template('delete.html', show_result=False, not_valid=False, developer_name='Callahan')
 
 if __name__=='__main__':
-    init_phonebook_db()
     app.run(host='0.0.0.0', port=80)
