@@ -97,55 +97,55 @@ def find_records():
         persons = find_persons(keyword)
         return render_template('index.html', persons=persons, keyword=keyword, show_result=True, developer_name='Rehab')
     else:
-        return render_template('index.html', show_result=False, developer_name='Callahan')
+        return render_template('index.html', show_result=False, developer_name='Rehab')
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_record():
     if request.method == 'POST':
         name=request.form['username']
         if name is None or name.strip() == '':
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be empty.', show_result=False, action_name='save', developer_name='Callahan')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be empty.', show_result=False, action_name='save', developer_name='Rehab')
         elif name.isdecimal():
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be number.', show_result=False, action_name='save', developer_name='Callahan')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be number.', show_result=False, action_name='save', developer_name='Rehab')
 
         phone_number=request.form['phonenumber']
         if phone_number is None or phone_number.strip() == '':
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number can not be empty.', show_result=False, action_name='save', developer_name='Callahan')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number can not be empty.', show_result=False, action_name='save', developer_name='Rehab')
         elif not phone_number.isdecimal():
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number should be in numeric format.', show_result=False, action_name='save', developer_name='Callahan')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number should be in numeric format.', show_result=False, action_name='save', developer_name='Rehab')
 
         result = insert_person(name, phone_number)
-        return render_template('add-update.html', show_result=True, result=result, not_valid=False, action_name='save', developer_name='Callahan')
+        return render_template('add-update.html', show_result=True, result=result, not_valid=False, action_name='save', developer_name='Rehab')
     else:
-        return render_template('add-update.html', show_result=False, not_valid=False, action_name='save', developer_name='Callahan')
+        return render_template('add-update.html', show_result=False, not_valid=False, action_name='save', developer_name='Rehab')
 
 @app.route('/update', methods=['GET', 'POST'])
 def update_record():
     if request.method == 'POST':
         name = request.form['username']
         if name is None or name.strip() == "":
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be empty', show_result=False, action_name='update', developer_name='Callahan')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Name can not be empty', show_result=False, action_name='update', developer_name='Rehab')
         phone_number = request.form['phonenumber']
         if phone_number is None or phone_number.strip() == "":
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number can not be empty', show_result=False, action_name='update', developer_name='Callahan')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number can not be empty', show_result=False, action_name='update', developer_name='Rehab')
         elif not phone_number.isdecimal():
-            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number should be in numeric format', show_result=False, action_name='update', developer_name='Callahan')
+            return render_template('add-update.html', not_valid=True, message='Invalid input: Phone number should be in numeric format', show_result=False, action_name='update', developer_name='Rehab')
 
         result = update_person(name, phone_number)
-        return render_template('add-update.html', show_result=True, result=result, not_valid=False, action_name='update', developer_name='Callahan')
+        return render_template('add-update.html', show_result=True, result=result, not_valid=False, action_name='update', developer_name='Rehab')
     else:
-        return render_template('add-update.html', show_result=False, not_valid=False, action_name='update', developer_name='Callahan')
+        return render_template('add-update.html', show_result=False, not_valid=False, action_name='update', developer_name='Rehab')
 
 @app.route('/delete', methods=['GET', 'POST'])
 def delete_record():
     if request.method == 'POST':
         name = request.form['username']
         if name is None or name.strip() == "":
-            return render_template('delete.html', not_valid=True, message='Invalid input: Name can not be empty', show_result=False, developer_name='Callahan')
+            return render_template('delete.html', not_valid=True, message='Invalid input: Name can not be empty', show_result=False, developer_name='Rehab')
         result = delete_person(name)
-        return render_template('delete.html', show_result=True, result=result, not_valid=False, developer_name='Callahan')
+        return render_template('delete.html', show_result=True, result=result, not_valid=False, developer_name='Rehab')
     else:
-        return render_template('delete.html', show_result=False, not_valid=False, developer_name='Callahan')
+        return render_template('delete.html', show_result=False, not_valid=False, developer_name='Rehab')
 
 if __name__=='__main__':
     app.run(host='0.0.0.0', port=80)
