@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
   Cloudformation template for Phonebook Application.
-
 Resources:
   ALBSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
@@ -44,6 +43,7 @@ Resources:
                 pip3 install flask
                 pip3 install flask_mysql
                 echo "${MyDBURI}" > /home/ec2-user/dbserver.endpoint
+
                 FOLDER="https://raw.githubusercontent.com/Rehab19/my-clarusway-workshop/master/004-phonebook-web-application/app.py"
                 curl -s --create-dirs -o "/home/ec2-user/templates/index.html" -L "$FOLDER"templates/index.html
                 curl -s --create-dirs -o "/home/ec2-user/templates/add-update.html" -L "$FOLDER"templates/add-update.html
@@ -68,12 +68,13 @@ Resources:
       SecurityGroups:
         - !GetAtt ALBSecurityGroup.GroupId
       Subnets:
-        - subnet-31e55c7c
         - subnet-3626d217
-        - subnet-7fd57671
         - subnet-d1bb518e
-        - subnet-e3370add
+        - subnet-7fd57671
         - subnet-fd09e79b
+        - subnet-31e55c7c
+        - subnet-e3370add
+        
       Type: application
   ALBListener:
     Type: "AWS::ElasticLoadBalancingV2::Listener"
